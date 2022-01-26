@@ -1,6 +1,6 @@
 # Kaomoji Search
 
-A [Raycast](https://www.raycast.com/) extension that allows you to search for Kaomoji and copy it to the clipboard.
+A [Raycast](https://www.raycast.com/) extension that allows you to search for [kaomoji](https://en.wiktionary.org/wiki/kaomoji) and copy it to the clipboard.
 
 ## Dependencies
 
