@@ -8,7 +8,8 @@ import {
   randomId,
 } from "@raycast/api";
 import { useState, useEffect, useRef } from "react";
-import fetch, { AbortError } from "node-fetch";
+import { AbortError } from "node-fetch";
+import find from "asciilib/find";
 
 export default function Command() {
   const { state, search } = useSearch();
@@ -28,18 +29,13 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
   return (
     <List.Item
       title={searchResult.name}
-      subtitle={searchResult.description}
-      accessoryTitle={searchResult.username}
+      accessoryTitle={searchResult.description}
       actions={
         <ActionPanel>
           <ActionPanel.Section>
-            <OpenInBrowserAction title="Open in Browser" url={searchResult.url} />
-          </ActionPanel.Section>
-          <ActionPanel.Section>
             <CopyToClipboardAction
-              title="Copy Install Command"
-              content={`npm install ${searchResult.name}`}
-              shortcut={{ modifiers: ["cmd"], key: "." }}
+              title="Copy kaomoji to clipboard"
+              content={searchResult.name}
             />
           </ActionPanel.Section>
         </ActionPanel>
@@ -89,30 +85,32 @@ function useSearch() {
 }
 
 async function performSearch(searchText: string, signal: AbortSignal): Promise<SearchResult[]> {
-  const params = new URLSearchParams();
-  params.append("q", searchText.length === 0 ? "@raycast/api" : searchText);
+  interface AsciiLibEntry {
+    name: string;
+    entry: string;
+    keywords: string[];
+    category: string;
+  };
 
-  const response = await fetch("https://api.npms.io/v2/search" + "?" + params.toString(), {
-    method: "get",
-    signal: signal,
-  });
+  console.log("searching for", searchText);
 
-  if (!response.ok) {
-    return Promise.reject(response.statusText);
+  const findPromise: Promise<AsciiLibEntry[]> = find(searchText)
+    .toArray()
+    .toPromise();
+
+  const results = (await findPromise) as AsciiLibEntry[];
+
+  if (signal.aborted) {
+    return Promise.reject(new AbortError());
   }
 
-  type Json = Record<string, unknown>;
+  console.log("results count", results.length);
 
-  const json = (await response.json()) as Json;
-  const jsonResults = (json?.results as Json[]) ?? [];
-  return jsonResults.map((jsonResult) => {
-    const npmPackage = jsonResult.package as Json;
+  return results.map((entry: AsciiLibEntry) => {
     return {
       id: randomId(),
-      name: npmPackage.name as string,
-      description: (npmPackage?.description as string) ?? "",
-      username: ((npmPackage.publisher as Json)?.username as string) ?? "",
-      url: (npmPackage.links as Json).npm as string,
+      name: entry.entry as string,
+      description: entry.name as string,
     };
   });
 }
@@ -126,6 +124,4 @@ interface SearchResult {
   id: string;
   name: string;
   description: string;
-  username?: string;
-  url: string;
 }
