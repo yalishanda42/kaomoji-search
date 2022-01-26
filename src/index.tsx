@@ -33,7 +33,7 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
         <ActionPanel>
           <ActionPanel.Section>
             <CopyToClipboardAction
-              title="Copy kaomoji to clipboard"
+              title="Copy to Clipboard"
               content={searchResult.name}
             />
           </ActionPanel.Section>
