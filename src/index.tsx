@@ -2,7 +2,6 @@ import {
   ActionPanel,
   CopyToClipboardAction,
   List,
-  OpenInBrowserAction,
   showToast,
   ToastStyle,
   randomId,
