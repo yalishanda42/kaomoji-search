@@ -2,15 +2,15 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "kaomoji-search",
   "title": "Kaomoji Search",
-  "description": "Search and copy-paste different kaomoji (ascii/unicode emotes).",
+  "description": "Search and copy to the clipboard different kaomoji (ascii/unicode emotes).",
   "icon": "command-icon.png",
   "author": "yalishanda",
   "license": "MIT",
   "commands": [
     {
       "name": "index",
-      "title": "Search Kaomoji",
-      "description": "Search for kaomoji by a keyword description of it",
+      "title": "Kaomoji Search",
+      "description": "Search for kaomoji by a keyword description of it.",
       "mode": "view"
     }
   ],
