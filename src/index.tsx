@@ -1,11 +1,4 @@
-import {
-  ActionPanel,
-  CopyToClipboardAction,
-  List,
-  showToast,
-  ToastStyle,
-  randomId,
-} from "@raycast/api";
+import { ActionPanel, CopyToClipboardAction, List, showToast, ToastStyle, randomId } from "@raycast/api";
 import { useState, useEffect, useRef } from "react";
 import { AbortError } from "node-fetch";
 import find from "asciilib/find";
@@ -32,10 +25,7 @@ function SearchListItem({ searchResult }: { searchResult: SearchResult }) {
       actions={
         <ActionPanel>
           <ActionPanel.Section>
-            <CopyToClipboardAction
-              title="Copy to Clipboard"
-              content={searchResult.name}
-            />
+            <CopyToClipboardAction title="Copy to Clipboard" content={searchResult.name} />
           </ActionPanel.Section>
         </ActionPanel>
       }
@@ -89,13 +79,11 @@ async function performSearch(searchText: string, signal: AbortSignal): Promise<S
     entry: string;
     keywords: string[];
     category: string;
-  };
+  }
 
   console.log("searching for", searchText);
 
-  const findPromise: Promise<AsciiLibEntry[]> = find(searchText)
-    .toArray()
-    .toPromise();
+  const findPromise: Promise<AsciiLibEntry[]> = find(searchText).toArray().toPromise();
 
   const results = (await findPromise) as AsciiLibEntry[];
 
