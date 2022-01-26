@@ -9,8 +9,8 @@
   "commands": [
     {
       "name": "index",
-      "title": "Kaomoji Search",
-      "description": "Search for kaomoji by a keyword description of it.",
+      "title": "Search Kaomoji",
+      "description": "Search for kaomoji by a keyword description.",
       "mode": "view"
     }
   ],
