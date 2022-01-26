@@ -1,3 +1,5 @@
+![Shrug icon](assets/command-icon.png)
+
 # Kaomoji Search
 
 A [Raycast](https://www.raycast.com/) extension that allows you to search for [kaomoji](https://en.wiktionary.org/wiki/kaomoji) and copy it to the clipboard.
