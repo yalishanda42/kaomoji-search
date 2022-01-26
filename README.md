@@ -16,3 +16,7 @@ As [documented](https://developers.raycast.com/basics/create-your-first-extensio
 
 * Building the project: `npm install`
 * Starting the local development server: `npm run dev`
+
+## License
+
+[MIT](LICENSE)
