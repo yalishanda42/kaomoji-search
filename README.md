@@ -14,8 +14,10 @@ If you desire to add more kaomoji to the database, consider contributing to the 
 
 As [documented](https://developers.raycast.com/basics/create-your-first-extension#develop-your-extension):
 
-* Building the project: `npm install`
+* Installing the dependencies: `npm install`
 * Starting the local development server: `npm run dev`
+
+Make sure everything is written well using `npm run lint` and that the production build is alright using `npm run build`.
 
 ## License
 
