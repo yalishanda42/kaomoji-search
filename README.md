@@ -1,4 +1,4 @@
-![Shrug icon](assets/command-icon.png)
+![Demo](preview-assets/demo.gif)
 
 # Kaomoji Search
 
